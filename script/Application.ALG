@@ -19,7 +19,7 @@ inicio
     escreval("   7. Sair")
     escreval("   ---------------------------")
     escreval("")
-    escreva("-> ")
+    escreva("Selecione uma operação: ")
 fimprocedimento
 
 procedimento ExibirResultado(resultado : real; operacao : caractere)
@@ -73,15 +73,49 @@ operacao : caractere
 
 Inicio
 
-
-
 enquanto menuSelect <> 7 faca
-
     ExibirMenu()
     leia(menuSelect)
 
+    se (menuSelect >= 1) e (menuSelect <= 6) entao
+        se menuSelect = 5 entao
+            escreva("-> ")
+            leia(numeroRad)
+        senao
+            escreva("-> ")
+            leia(numeroUm)
+            escreva("-> ")
+            leia(numeroDois)
+        fimse
     
-    ExibirResultado(resultado, operacao)
+        escolha menuSelect
+            caso 1
+                resultado <- Somar(numeroUm, numeroDois)
+                operacao <- "soma"
+            caso 2
+                resultado <- Subtrair(numeroUm, numeroDois)
+                operacao <- "subtração"
+            caso 3
+                resultado <- Multiplicar(numeroUm, numeroDois)
+                operacao <- "multiplicação"
+            caso 4
+                 resultado <- Dividir(numeroUm, numeroDois)
+                 operacao <- "divisão"
+            caso 5
+                 resultado <- Radiciar(numeroRad)
+                 operacao <- "radiciação"
+            caso 6
+                 resultado <- Potenciar(numeroUm, numeroDois)
+                 operacao <- "potenciação"
+        fimescolha
+    
+        ExibirResultado(resultado, operacao)
+
+        senao
+            se menuSelect <> 7 entao
+                escreval("Erro: operação inválida!")
+            fimse
+    fimse
 fimenquanto
 
 Fimalgoritmo
