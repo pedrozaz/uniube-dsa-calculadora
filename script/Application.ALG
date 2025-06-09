@@ -27,6 +27,11 @@ inicio
     escreval("Resultado da ", operacao, " :", resultado)
 fimprocedimento
 
+procedimento Erro()
+inicio
+    escreval("Erro: operação inválida!")
+fimprocedimento
+
 funcao Somar(numeroUm, numeroDois : real): real
 inicio
     retorne numeroUm + numeroDois
@@ -92,28 +97,40 @@ enquanto menuSelect <> 7 faca
             caso 1
                 resultado <- Somar(numeroUm, numeroDois)
                 operacao <- "soma"
+                ExibirResultado(resultado, operacao)
             caso 2
                 resultado <- Subtrair(numeroUm, numeroDois)
                 operacao <- "subtração"
+                ExibirResultado(resultado, operacao)
             caso 3
                 resultado <- Multiplicar(numeroUm, numeroDois)
                 operacao <- "multiplicação"
+                ExibirResultado(resultado, operacao)
             caso 4
                  resultado <- Dividir(numeroUm, numeroDois)
                  operacao <- "divisão"
+                 se resultado <> 0 entao
+                     ExibirResultado(resultado, operacao)
+                 senao
+                     Erro()
+                 fimse
             caso 5
                  resultado <- Radiciar(numeroRad)
                  operacao <- "radiciação"
+                 se resultado <> 0 entao
+                     ExibirResultado(resultado, operacao)
+                 senao
+                     Erro()
+                 fimse
             caso 6
                  resultado <- Potenciar(numeroUm, numeroDois)
                  operacao <- "potenciação"
+                 ExibirResultado(resultado, operacao)
         fimescolha
-    
-        ExibirResultado(resultado, operacao)
-
+        
         senao
             se menuSelect <> 7 entao
-                escreval("Erro: operação inválida!")
+                Erro()
             fimse
     fimse
 fimenquanto
