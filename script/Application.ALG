@@ -1,10 +1,11 @@
 Algoritmo "Calculadora"
 // Disciplina  :  DSA
-// Professor   :  Maxwell e Luis Carlos
-// Descrição   : Calculadora funcional de: soma, multi, div, sqrt, sub.
-// Autores    : Guilherme Pedroza, Lucas Nastalli, Rhandal, Nikolas, Iris
+// Professor   :  Maxwell e Felix
+// Descrição   : Calculadora funcional de: soma, multi, div, sqrt, sub e poten.
 // Data atual  : 6/7/2025
 
+
+// PROCEDIMENTOS
 
 procedimento ExibirMenu()
 inicio
@@ -27,10 +28,26 @@ inicio
     escreval("Resultado da ", operacao, " :", resultado)
 fimprocedimento
 
+procedimento LerNumeros(menuSelect : inteiro)
+inicio
+    se menuSelect = 5 entao
+        escreva("-> ")
+        leia(numeroRad)
+    senao
+        escreva("-> ")
+        leia(numeroUm)
+        escreva("-> ")
+        leia(numeroDois)
+    fimse
+fimprocedimento
+    
 procedimento Erro()
 inicio
     escreval("Erro: operação inválida!")
 fimprocedimento
+
+
+//FUNCÕES
 
 funcao Somar(numeroUm, numeroDois : real): real
 inicio
@@ -70,6 +87,9 @@ inicio
     retorne base ^ expoente
 fimfuncao
 
+
+// SCRIPT PRINCIPAL
+
 Var
 
 numeroUm, numeroDois, numeroRad, resultado : real
@@ -82,16 +102,9 @@ enquanto menuSelect <> 7 faca
     ExibirMenu()
     leia(menuSelect)
 
-    se (menuSelect >= 1) e (menuSelect <= 6) entao
-        se menuSelect = 5 entao
-            escreva("-> ")
-            leia(numeroRad)
-        senao
-            escreva("-> ")
-            leia(numeroUm)
-            escreva("-> ")
-            leia(numeroDois)
-        fimse
+    se (menuSelect > 0) e (menuSelect <= 6) entao
+    
+        LerNumeros(menuSelect)
     
         escolha menuSelect
             caso 1
@@ -128,10 +141,10 @@ enquanto menuSelect <> 7 faca
                  ExibirResultado(resultado, operacao)
         fimescolha
         
-        senao
-            se menuSelect <> 7 entao
-                Erro()
-            fimse
+    senao
+        se menuSelect <> 7 entao
+            Erro()
+        fimse
     fimse
 fimenquanto
 
